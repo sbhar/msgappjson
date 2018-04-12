@@ -1,25 +1,20 @@
 <?php
 header('Access-Control-Allow-Origin: *'); 
-function json_response($code = 200, $message = null){
 	
-	$values = array(
-  "name"    =>     $_POST['name'],
-  "comment" =>     $_POST['comment'],
-  "time"    =>     $_POST['time']
-  
-);
+$values = json_decode(file_get_contents("msg.json"), true);	
 
-
-
-$json_obj = json_encode($values);
-    
-		return json_encode($values);
-      
-		
+if( !empty( $_POST ) ){
+	$postarray = array(
+	  "name"    =>     $_POST['name'],
+	  "comment" =>     $_POST['comment'],
+	  "timer"    =>     $_POST['timer']
+	  
+	);
+	array_push($values,$postarray);
+	file_put_contents("msg.json", json_encode($values));
 }
 
-	echo json_response(200, 'working');
-
-
-
+$values = json_decode(file_get_contents("msg.json"), true);	    
+echo json_encode($values);
+      
 ?>
