@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo $_SESSION["code"];
+
 header('Access-Control-Allow-Origin: *');
 	
 $values = json_decode(file_get_contents("msg.json"), true);	
@@ -24,6 +24,6 @@ if( !empty( $_POST ) ){
 }
 
 $values = json_decode(file_get_contents("msg.json"), true);	    
-echo json_encode($values);
+echo json_encode($values).$_SESSION["code"];
       
 ?>
