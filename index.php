@@ -1,7 +1,7 @@
 <?php
-session_start();
+//session_start();
 $code=rand(1000,9999);
-$_SESSION["code"]=$code;
+//$_SESSION["code"]=$code;
 $im = imagecreatetruecolor(50, 24);
 $bg = imagecolorallocate($im, 22, 86, 165); //background color blue
 $fg = imagecolorallocate($im, 255, 255, 255);//text color white
@@ -17,7 +17,7 @@ imagedestroy($im);
 $values = json_decode(file_get_contents("msg.json"), true);	
 
 if( !empty( $_POST ) ){
-	echo $_POST["captcha"];
+//if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$_SESSION["code"]==$_POST["captcha"]) {
 	if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$code==$_POST["captcha"]) {
 		echo "Correct Code Entered";
 		//Do you stuff
