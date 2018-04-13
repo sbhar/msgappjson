@@ -20,10 +20,11 @@ if( !empty( $_POST ) ){
 		file_put_contents("msg.json", json_encode($values));
 	}else{
 		die("Wrong Code Entered");
+		echo $_SESSION["code"];
 	}
 }
 
 $values = json_decode(file_get_contents("msg.json"), true);	    
-echo json_encode($values).$_SESSION["code"];
+echo json_encode($values);
       
 ?>
