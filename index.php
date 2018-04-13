@@ -1,7 +1,6 @@
 <?php
-session_start();
 header('Access-Control-Allow-Origin: *'); 
-	
+require_once('code.php');	
 $values = json_decode(file_get_contents("msg.json"), true);	
 
 if( !empty( $_POST ) ){

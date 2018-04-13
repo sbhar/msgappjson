@@ -1,7 +1,5 @@
 <?php
-session_start();
-$code=rand(1000,9999);
-$_SESSION["code"]=$code;
+require_once('code.php');
 $im = imagecreatetruecolor(50, 24);
 $bg = imagecolorallocate($im, 22, 86, 165); //background color blue
 $fg = imagecolorallocate($im, 255, 255, 255);//text color white
