@@ -3,6 +3,7 @@
 $code=rand(1000,9999);
 //$_SESSION["code"]=$code;
 file_put_contents("code.txt", $code);
+chmod("code.txt",0600);
 $im = imagecreatetruecolor(50, 24);
 $bg = imagecolorallocate($im, 22, 86, 165); //background color blue
 $fg = imagecolorallocate($im, 255, 255, 255);//text color white
