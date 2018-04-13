@@ -27,6 +27,6 @@ if( !empty( $_POST ) ){
 }
 
 $values = json_decode(file_get_contents("msg.json"), true);	    
-//echo json_encode($values);
+echo json_encode($values);
       
 ?>
