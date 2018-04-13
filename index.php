@@ -1,13 +1,14 @@
 <?php
-session_start();
 
 header('Access-Control-Allow-Origin: *');
-	
+
+$code = file_get_contents("code.txt",true);	
+
 $values = json_decode(file_get_contents("msg.json"), true);	
 
 if( !empty( $_POST ) ){
 	
-	if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$_SESSION["code"]==$_POST["captcha"]) {
+	if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$code==$_POST["captcha"]) {
 		echo "Correct Code Entered";
 		//Do you stuff
 		$postarray = array(
