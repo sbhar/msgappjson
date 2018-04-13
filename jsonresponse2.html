@@ -3,7 +3,7 @@
       <textarea class="form-control" id="comment" placeholder="Message" name="comment"></textarea>
 	  Enter Image Text
 <input name="captcha" type="text" id="captcha2">
-<img src="captcha.php" />
+<img src="https://msgappjson.herokuapp.com/" />
       <button type="submit" class="btn btn-primary" id="leave_msg">Leave Message</button>
 </form>
 
@@ -42,7 +42,7 @@ $("#comments_form").submit(function (event) {
                 console.log(data);
 				/*setTimeout(function(){
 	
-					$.get("/").done(function (data) {
+					$.get("https://msgappjson.herokuapp.com/index.php").done(function (data) {
 					
 					var datar = JSON.parse(data);
 					console.log(datar);

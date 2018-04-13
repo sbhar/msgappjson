@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
 $values = json_decode(file_get_contents("msg.json"), true);	
 
 if( !empty( $_POST ) ){
-	echo $_POST["captcha"];
+	echo $_SESSION["code"];
 	if(isset($_POST["captcha"])&&$_POST["captcha"]!=""&&$_SESSION["code"]==$_POST["captcha"]) {
 		echo "Correct Code Entered";
 		//Do you stuff
