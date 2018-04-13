@@ -19,7 +19,7 @@ if( !empty( $_POST ) ){
 		array_push($values,$postarray);
 		file_put_contents("msg.json", json_encode($values));
 	}else{
-		echo "Session variable: ".$_SESSION["code"];
+		echo "Session variable: ".json_encode($_SESSION["code"]);
 		//die("Wrong Code Entered");
 		
 	}
