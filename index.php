@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: https://sugataportfolio.firebaseapp.com');
 
 $code = file_get_contents("code.txt",true);	
 
@@ -19,6 +19,7 @@ if( !empty( $_POST ) ){
 		);
 		array_push($values,$postarray);
 		file_put_contents("msg.json", json_encode($values));
+		chmod("msg.json",0600);
 	}else{
 		echo "Session variable: ".json_encode($_SESSION["code"]);
 		//die("Wrong Code Entered");
