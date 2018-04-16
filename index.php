@@ -1,10 +1,10 @@
 <?php
 
-header('Access-Control-Allow-Origin: https://sugataportfolio.firebaseapp.com');
+header('Access-Control-Allow-Origin: *');
 
 $code = file_get_contents("code.txt",true);	
 
-$values = json_decode(file_get_contents("msg.json"), true);	
+$values = json_decode(file_get_contents("msg.txt"), true);	
 
 if( !empty( $_POST ) ){
 	
@@ -18,8 +18,9 @@ if( !empty( $_POST ) ){
 		  
 		);
 		array_push($values,$postarray);
-		file_put_contents("msg.json", json_encode($values));
-		chmod("msg.json",0600);
+		file_put_contents("msg.txt", json_encode($values));
+		chmod("msg.txt",0600);
+		
 	}else{
 		echo "Session variable: ".json_encode($_SESSION["code"]);
 		//die("Wrong Code Entered");
@@ -27,7 +28,7 @@ if( !empty( $_POST ) ){
 	}
 }
 
-$values = json_decode(file_get_contents("msg.json"), true);	    
+$values = json_decode(file_get_contents("msg.txt"), true);	    
 echo json_encode($values);
       
 ?>
