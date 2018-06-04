@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html style="background:none;">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<title></title>
 <style>
   #response {
     margin-top:20px;
@@ -7,6 +13,9 @@
   }
 
 </style>
+</head>
+<body>
+<div class="container">
 <form action="base64decode.php" method="get" class="ajax-converter-form" onsubmit="decode()" id="base64_form" name="fileinfo">
 					<div id="request">
 						<h1>Base64 Image Decoder</h1>
@@ -35,6 +44,7 @@
                                           					  <div class="clear"></div>
 					</div>
 </form>
+</div>
 <script>
 // Simulate a call to Dropbox or other service that can
 // return an image as an ArrayBuffer.
@@ -71,3 +81,5 @@ form.addEventListener('submit', function(ev) {
 
 }
 </script>
+</body>
+</html>
