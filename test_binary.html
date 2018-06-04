@@ -1,0 +1,103 @@
+<style>
+  #response {
+    margin-top:20px;
+  }
+  #response img {
+    width:100%
+  }
+
+</style>
+<form action="base64decode.php" method="get" class="ajax-converter-form" onsubmit="decode()" id="base64_form" name="fileinfo">
+					<div id="request">
+						<h1>Base64 Image Decoder</h1>
+						<div id="desc">Decode image from base64 encoded string - Allowed image types: JPG, JPEG, PNG, GIF, BMP - Max size: 2Mb</div>
+						<textarea name="request" style="width:100%;height:300px"></textarea>
+						<div class="clear"></div>
+					</div>
+		                        
+					<div id="action">
+						<select>
+							<option value="0" selected="">CHARSET (OPTIONAL)</option>
+							<option value="1">UTF-8</option>
+							<option value="2">ASCII</option>
+							<option value="3">Windows-1252</option>
+							<option value="4">CP1256</option>
+							<option value="5">ISO-8859-1</option>
+							<option value="6">ISO-8859-2</option>
+							<option value="7">ISO-8859-6</option>
+							<option value="8">ISO-8859-15</option>
+						</select>
+						<input type="submit" value="DECODE" onclick="decode()">
+						<div class="clear"></div>
+					</div>
+                                        					<div id="response" style="text-align:center;">
+                                                                                      <img id="photo"/>
+                                          					  <div class="clear"></div>
+					</div>
+</form>
+<script src="jquery-3.2.1.js"></script>
+<script>
+// Simulate a call to Dropbox or other service that can
+// return an image as an ArrayBuffer.
+function decode(){
+/*$("#base64_form").submit(function (event) {
+          event.preventDefault();
+		  event.stopPropagation();
+          var $form = $(this);
+          var actionUrl = $form.attr("action");
+          var actionMethod = $form.attr("method");
+          var formData = $form.serialize();
+
+var xhr = new XMLHttpRequest();
+//console.log(formData);
+// Use JSFiddle logo as a sample image to avoid complicating
+// this example with cross-domain issues.
+xhr.open( "POST", "base64decode.php", true );
+xhr.send(formData);
+// Ask for the result as an ArrayBuffer.
+xhr.responseType = "arraybuffer";
+
+xhr.onload = function( e ) {
+    // Obtain a blob: URL for the image data.
+    var arrayBufferView = new Uint8Array( this.response );
+    var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL( blob );
+    var img = document.querySelector( "#photo" );
+    img.src = imageUrl;
+};
+
+
+})*/
+
+var form = document.forms.namedItem("fileinfo");
+form.addEventListener('submit', function(ev) {
+
+  var oOutput = document.querySelector("div"),
+      oData = new FormData(form);
+
+  //oData.append("CustomField", "This is some extra data");
+
+  var oReq = new XMLHttpRequest();
+  oReq.responseType = "arraybuffer";
+  oReq.open("POST", "base64decode_xhr.php", true);
+  oReq.onload = function(oEvent) {
+    if (oReq.status == 200) {
+       // Obtain a blob: URL for the image data.
+    var arrayBufferView = new Uint8Array( this.response );
+    var blob = new Blob( [ arrayBufferView ], { type: "image/jpeg" } );
+    var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL( blob );
+    var img = document.querySelector( "#photo" );
+    img.src = imageUrl;
+    } else {
+      oOutput.innerHTML = "Error " + oReq.status + " occurred when trying to upload your file.<br \/>";
+    }
+  };
+
+  oReq.send(oData);
+  ev.preventDefault();
+}, false);
+
+}
+</script>
